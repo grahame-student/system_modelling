@@ -9,7 +9,7 @@ class TestSimpleModel(TestCase):
     omc = None
 
     @classmethod
-    def setup_class(cls)
+    def setup_class(cls):
         omc = OMCSessionZMQ()
         cmds = [
             'loadFile("~/model/simple.mo")',
@@ -17,7 +17,7 @@ class TestSimpleModel(TestCase):
         
         for cmd in cmds:
             answer = omc.sendExpression(cmd)
-            printf("{'\n'} {cmd}: {'\n'}{answer}")
+            print(f"\n{cmd}:\n {answer}")
 
     def test_omc_initialised(self):
         assert_that(TestSimpleModel.omc, is_(not_(None)))
