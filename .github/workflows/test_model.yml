@@ -30,7 +30,7 @@ jobs:
           $(cat /etc/os-release | grep "\(UBUNTU\\|DEBIAN\\|VERSION\)_CODENAME" | sort | cut -d= -f 2 | head -1) \
           release" | sudo tee /etc/apt/sources.list.d/openmodelica.list
           
-      - name: Update and Install OpenModelica packages
+      - name: Update and install OpenModelica packages
         run: |
           sudo apt-get update
           sudo apt-get install --no-install-recommends omc
@@ -44,3 +44,9 @@ jobs:
           
       - name: Install Python dependencies
         run: pip install -r tests/requirements.txt
+
+      - name: Run test cases
+        run: |
+          pytest --cov=./ \
+                 --cov-branch \
+                 --cov-report=xml:pytest-cobertura.xml
