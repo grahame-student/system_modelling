@@ -20,5 +20,8 @@ class TestSimpleModel(TestCase):
             answer = omc.sendExpression(cmd)
             print(f"\n{cmd}:\n {answer}")
 
+    def test_dummy(self):
+        pass
+    
     def test_omc_initialised(self):
         assert_that(TestSimpleModel.omc, is_(not_(None)))
