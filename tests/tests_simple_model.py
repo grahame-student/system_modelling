@@ -10,6 +10,7 @@ class TestSimpleModel(TestCase):
 
     @classmethod
     def setup_class(cls):
+        print("Setting up...")
         omc = OMCSessionZMQ()
         cmds = [
             'loadFile("~/model/simple.mo")',
