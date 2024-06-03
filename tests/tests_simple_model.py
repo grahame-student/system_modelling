@@ -1,6 +1,10 @@
+from unittest import TestCase
+from hamcrest import assert_that, is_, not_
+
 from OMPython import OMCSessionZMQ
 
-class TestSimpleModel:
+
+class TestSimpleModel(TestCase):
 
     omc = None
 
@@ -14,3 +18,6 @@ class TestSimpleModel:
         for cmd in cmds:
             answer = omc.sendExpression(cmd)
             printf("{'\n'} {cmd}: {'\n'}{answer}")
+
+    def test_omc_initialised(self):
+        assert_that(TestSimpleModel.omc, is_(not_(None)))
