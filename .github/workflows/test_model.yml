@@ -47,6 +47,6 @@ jobs:
 
       - name: Run test cases
         run: |
-          pytest --cov=./ \
+          pytest --cov=./tests \
                  --cov-branch \
                  --cov-report=xml:pytest-cobertura.xml
