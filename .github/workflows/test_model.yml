@@ -48,3 +48,4 @@ jobs:
           pytest --cov=./tests/ \
                  --cov-branch \
                  --cov-report=xml:pytest-cobertura.xml
+                 --model_dir ./model/

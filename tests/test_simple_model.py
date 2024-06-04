@@ -1,27 +1,19 @@
-from unittest import TestCase
+import pytest
 from hamcrest import assert_that, is_, not_
 
-from OMPython import OMCSessionZMQ
+from OMPython import ModelicaSystem
 
 
-class TestSimpleModel(TestCase):
+@pytest.fixture
+def get_model(model_dir):
+    print("Setting up...")
+    model_under_test = f"{model_dir}/simple.mo"
+    print(model_under_test)
+    model = ModelicaSystem(model_under_test, "FirstOrder")
 
-    omc = None
+    yield model
 
-    @classmethod
-    def setup_class(cls):
-        print("Setting up...")
-        omc = OMCSessionZMQ()
-        cmds = [
-            'loadFile("~/model/simple.mo")',
-        ]
-        
-        for cmd in cmds:
-            answer = omc.sendExpression(cmd)
-            print(f"\n{cmd}:\n {answer}")
 
-    def test_dummy(self):
-        pass
-    
-    def test_omc_initialised(self):
-        assert_that(TestSimpleModel.omc, is_(not_(None)))
+def test_omc_initialised(get_model):
+    model = get_model
+    assert_that(model, is_(not_(None)))
