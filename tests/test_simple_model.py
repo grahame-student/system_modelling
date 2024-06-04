@@ -6,9 +6,7 @@ from OMPython import ModelicaSystem
 
 @pytest.fixture
 def get_model(model_dir):
-    print("Setting up...")
     model_under_test = f"{model_dir}/simple.mo"
-    print(model_under_test)
     model = ModelicaSystem(model_under_test, "FirstOrder")
 
     yield model
