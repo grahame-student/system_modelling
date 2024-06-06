@@ -15,3 +15,7 @@ def get_model(model_dir):
 def test_omc_initialised(get_model):
     model = get_model
     assert_that(model, is_(not_(None)))
+
+def test_model_simulation_runs(get_model):
+    model = get_model
+    model.simulate()
